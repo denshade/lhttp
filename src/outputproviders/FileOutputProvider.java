@@ -9,6 +9,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import outputproviders.statuscodes.Code200;
+import outputproviders.statuscodes.Code404;
+
 import configuration.HttpdConfiguration;
 
 import parsers.GetParser;
@@ -45,7 +48,12 @@ public class FileOutputProvider implements OutputProvider
 				+ File.separator
 				+ request.requestedFile);
 		if (file.exists() && file.isFile()) {
-			out.write("HTTP-1.1 200 OK\n\n");
+			
+			out.write(Code200.getMessage() + "\n");
+			out.write("Accept-Ranges: bytes\n");
+			out.write("Content-Length: " + file.length() + "\n");
+			out.write("Connection: close\n");
+			out.write("Content-Type: text/html\n\n");
 			BufferedReader reader = new BufferedReader(new FileReader(
 					file));
 			String readLine = reader.readLine();
@@ -53,12 +61,15 @@ public class FileOutputProvider implements OutputProvider
 				out.write(readLine);
 				readLine = reader.readLine();
 			}
-			reader.close();
-
+			out.write("\n");
+			//reader.close();
+			//input.close();
+			
 		} else {
-			out.write("HTTP-1.1 404 OK\n\n");
+			out.write(Code404.getMessage() + "\n\n");
 		}
 		out.flush();
+		//out.close();
 	}
 	
 }
