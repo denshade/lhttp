@@ -1,6 +1,7 @@
 package server;
 
 import java.net.ServerSocket;
+import java.net.Socket;
 
 import configuration.HttpdConfiguration;
 
@@ -15,7 +16,8 @@ public class HttpServer
 						ServerSocket serverSocket = new ServerSocket(portNumber);
 						while(true)
 						{
-					    	new HttpServerThread(serverSocket.accept(), new HttpdConfiguration()).start();
+							Socket socket = serverSocket.accept();
+					    	new HttpServerThread(socket, new HttpdConfiguration()).start();
 					    }
 				} catch (Exception e)
 				{

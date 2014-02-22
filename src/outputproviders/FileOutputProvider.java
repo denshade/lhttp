@@ -61,15 +61,12 @@ public class FileOutputProvider implements OutputProvider
 				out.write(readLine);
 				readLine = reader.readLine();
 			}
-			out.write("\n");
-			//reader.close();
-			//input.close();
-			
+			out.write("\n\n");
+			reader.close();			
 		} else {
 			out.write(Code404.getMessage() + "\n\n");
 		}
 		out.flush();
-		//out.close();
 	}
 	
 }

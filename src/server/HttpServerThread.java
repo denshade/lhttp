@@ -26,7 +26,7 @@ public class HttpServerThread extends Thread {
 		try {
 			OutputProvider provider = new FileOutputProvider(httpdConfiguration);
 			provider.process(socket.getInputStream(), socket.getOutputStream());
-			
+			socket.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
