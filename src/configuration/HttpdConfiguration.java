@@ -4,8 +4,16 @@ import java.io.File;
 
 public class HttpdConfiguration 
 {
-	public File getHtDocsDirectory()
-	{
-		return new File("/tmp");
+	private File httpDocuments;
+
+	public File getHttpDocuments() {
+		return httpDocuments;
 	}
+
+	public void setHttpDocuments(File httpDocuments) {
+		this.httpDocuments = httpDocuments;
+	}
+	
+	
+	
 }

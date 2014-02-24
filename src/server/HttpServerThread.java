@@ -21,13 +21,15 @@ public class HttpServerThread extends Thread {
 	}
 
 	public void run() {
-
-
 		try {
 			OutputProvider provider = new FileOutputProvider(httpdConfiguration);
 			provider.process(socket.getInputStream(), socket.getOutputStream());
+			Thread.sleep(100); //Why do I have to do this?
 			socket.close();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

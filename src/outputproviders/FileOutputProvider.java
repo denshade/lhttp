@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import outputproviders.statuscodes.Code200;
+import outputproviders.statuscodes.Code400;
 import outputproviders.statuscodes.Code404;
 
 import configuration.HttpdConfiguration;
@@ -37,13 +38,14 @@ public class FileOutputProvider implements OutputProvider
 		if (firstLine == null) {
 			return;
 		}
-		
-		GetRequest request = GetParser.parseGetLine(firstLine);
+		try{
+			GetRequest request = GetParser.parseGetLine(firstLine);
+			
 		if (request.requestedFile.equals("/"))
 		{
 			request.requestedFile = "index.html";
 		}
-		File file = new File(httpdConfiguration.getHtDocsDirectory()
+		File file = new File(httpdConfiguration.getHttpDocuments()
 				.getAbsolutePath()
 				+ File.separator
 				+ request.requestedFile);
@@ -65,6 +67,10 @@ public class FileOutputProvider implements OutputProvider
 			reader.close();			
 		} else {
 			out.write(Code404.getMessage() + "\n\n");
+		}
+		} catch(IllegalArgumentException ex)
+		{
+			out.write(Code400.getMessage() + "\n\n");
 		}
 		out.flush();
 	}
