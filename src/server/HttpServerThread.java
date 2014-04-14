@@ -3,8 +3,9 @@ package server;
 import java.io.IOException;
 import java.net.Socket;
 
-import outputproviders.FileOutputProvider;
-import outputproviders.OutputProvider;
+import server.serverthread.outputproviders.FileOutputProvider;
+import server.serverthread.outputproviders.OutputProvider;
+
 
 import configuration.HttpdConfiguration;
 

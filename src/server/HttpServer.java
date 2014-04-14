@@ -1,5 +1,6 @@
 package server;
 
+import java.io.File;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -14,10 +15,12 @@ public class HttpServer
 						System.out.println("Listening");
 						int portNumber = 4444;
 						ServerSocket serverSocket = new ServerSocket(portNumber);
+						HttpdConfiguration config = new HttpdConfiguration();
+						config.setHttpDocuments(new File("/tmp"));
 						while(true)
 						{
 							Socket socket = serverSocket.accept();
-					    	new HttpServerThread(socket, new HttpdConfiguration()).start();
+					    	new HttpServerThread(socket, config).start();
 					    }
 				} catch (Exception e)
 				{
