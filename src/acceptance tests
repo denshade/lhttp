@@ -6,8 +6,11 @@ All HTTP date/time stamps MUST be represented in Greenwich Mean Time (GMT), with
 HTTP/1.1 recipients MUST respect the charset label provided by the sender; and those user agents that have a provision to "guess" a charset MUST use the charset from the content-type field if they support that charset, rather than the recipient's preference, when initially displaying a document.
 Transfer-coding values are used to indicate an encoding transformation that has been, can be, or may need to be applied to an entity-body in order to ensure "safe transport" through the network.
 
-A weight is normalized to a real number in the range 0 through 1, where 0 is the minimum and 1 the maximum value.
+ In summary, a language tag is composed of 1 or more parts: A primary language tag and a possibly empty series of subtags.
+ where any two-letter primary-tag is an ISO-639 language abbreviation and any two-letter initial subtag is an ISO-3166 country code.
 
 done
+
 qvalue:
 	HTTP/1.1 applications MUST NOT generate more than three digits after the decimal point.
+	A weight is normalized to a real number in the range 0 through 1, where 0 is the minimum and 1 the maximum value.
