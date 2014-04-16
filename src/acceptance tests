@@ -5,12 +5,17 @@ The first format is preferred as an Internet standard and represents a fixed-len
 All HTTP date/time stamps MUST be represented in Greenwich Mean Time (GMT), without exception. For the purposes of HTTP, GMT is exactly equal to UTC (Coordinated Universal Time). This is indicated in the first two formats by the inclusion of "GMT" as the three-letter abbreviation for time zone, and MUST be assumed when reading the asctime format. 
 HTTP/1.1 recipients MUST respect the charset label provided by the sender; and those user agents that have a provision to "guess" a charset MUST use the charset from the content-type field if they support that charset, rather than the recipient's preference, when initially displaying a document.
 Transfer-coding values are used to indicate an encoding transformation that has been, can be, or may need to be applied to an entity-body in order to ensure "safe transport" through the network.
-
- In summary, a language tag is composed of 1 or more parts: A primary language tag and a possibly empty series of subtags.
- where any two-letter primary-tag is an ISO-639 language abbreviation and any two-letter initial subtag is an ISO-3166 country code.
+A request is read correctly into RequestLine, Header objects and an output stream.
+A response is read correctly into StatusLine, Header objects and an input stream.
 
 done
 
 qvalue:
 	HTTP/1.1 applications MUST NOT generate more than three digits after the decimal point.
 	A weight is normalized to a real number in the range 0 through 1, where 0 is the minimum and 1 the maximum value.
+language tag:
+	In summary, a language tag is composed of 1 or more parts: A primary language tag and a possibly empty series of subtags.
+	where any two-letter primary-tag is an ISO-639 language abbreviation and any two-letter initial subtag is an ISO-3166 country code.
+
+A request or response exists out of a statusline/request line, headers and the body.
+	
